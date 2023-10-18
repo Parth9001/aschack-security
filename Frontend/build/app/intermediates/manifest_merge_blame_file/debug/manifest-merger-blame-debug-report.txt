@@ -1,0 +1,180 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.admin_scanner_app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="33" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/AndroidManifest.xml:4:1-63
+15-->/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/AndroidManifest.xml:4:18-60
+16    <uses-permission android:name="android.permission.CAMERA" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+16-->/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/AndroidManifest.xml:2:1-60
+16-->/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/AndroidManifest.xml:2:18-58
+17    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+18-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:25:5-79
+18-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:25:22-76
+19
+20    <application
+21        android:name="android.app.Application"
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.6.0] /Users/parthbatwara/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+23        android:debuggable="true"
+24        android:icon="@mipmap/ic_launcher"
+25        android:label="admin_scanner_app" >
+26        <activity
+27            android:name="com.example.admin_scanner_app.MainActivity"
+28            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+29            android:exported="true"
+30            android:hardwareAccelerated="true"
+31            android:launchMode="singleTop"
+32            android:theme="@style/LaunchTheme"
+33            android:windowSoftInputMode="adjustResize" >
+34
+35            <!--
+36                 Specifies an Android theme to apply to this Activity as soon as
+37                 the Android process has started. This theme is visible to the user
+38                 while the Flutter UI initializes. After that, this theme continues
+39                 to determine the Window background behind the Flutter UI.
+40            -->
+41            <meta-data
+42                android:name="io.flutter.embedding.android.NormalTheme"
+43                android:resource="@style/NormalTheme" />
+44
+45            <intent-filter>
+46                <action android:name="android.intent.action.MAIN" />
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+49            </intent-filter>
+50        </activity>
+51        <!--
+52             Don't delete the meta-data below.
+53             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+54        -->
+55        <meta-data
+56            android:name="flutterEmbedding"
+57            android:value="2" />
+58
+59        <uses-library
+59-->[androidx.window:window:1.0.0-beta04] /Users/parthbatwara/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+60            android:name="androidx.window.extensions"
+60-->[androidx.window:window:1.0.0-beta04] /Users/parthbatwara/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+61            android:required="false" />
+61-->[androidx.window:window:1.0.0-beta04] /Users/parthbatwara/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+62        <uses-library
+62-->[androidx.window:window:1.0.0-beta04] /Users/parthbatwara/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+63            android:name="androidx.window.sidecar"
+63-->[androidx.window:window:1.0.0-beta04] /Users/parthbatwara/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+64            android:required="false" />
+64-->[androidx.window:window:1.0.0-beta04] /Users/parthbatwara/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+65
+66        <service
+66-->[androidx.camera:camera-camera2:1.1.0] /Users/parthbatwara/.gradle/caches/transforms-3/16077534de5b0f2d4c2587a0b62f38fb/transformed/jetified-camera-camera2-1.1.0/AndroidManifest.xml:26:9-35:19
+67            android:name="androidx.camera.core.impl.MetadataHolderService"
+67-->[androidx.camera:camera-camera2:1.1.0] /Users/parthbatwara/.gradle/caches/transforms-3/16077534de5b0f2d4c2587a0b62f38fb/transformed/jetified-camera-camera2-1.1.0/AndroidManifest.xml:27:13-75
+68            android:enabled="false"
+68-->[androidx.camera:camera-camera2:1.1.0] /Users/parthbatwara/.gradle/caches/transforms-3/16077534de5b0f2d4c2587a0b62f38fb/transformed/jetified-camera-camera2-1.1.0/AndroidManifest.xml:28:13-36
+69            android:exported="false" >
+69-->[androidx.camera:camera-camera2:1.1.0] /Users/parthbatwara/.gradle/caches/transforms-3/16077534de5b0f2d4c2587a0b62f38fb/transformed/jetified-camera-camera2-1.1.0/AndroidManifest.xml:29:13-37
+70            <meta-data
+70-->[androidx.camera:camera-camera2:1.1.0] /Users/parthbatwara/.gradle/caches/transforms-3/16077534de5b0f2d4c2587a0b62f38fb/transformed/jetified-camera-camera2-1.1.0/AndroidManifest.xml:32:13-34:89
+71                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+71-->[androidx.camera:camera-camera2:1.1.0] /Users/parthbatwara/.gradle/caches/transforms-3/16077534de5b0f2d4c2587a0b62f38fb/transformed/jetified-camera-camera2-1.1.0/AndroidManifest.xml:33:17-103
+72                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+72-->[androidx.camera:camera-camera2:1.1.0] /Users/parthbatwara/.gradle/caches/transforms-3/16077534de5b0f2d4c2587a0b62f38fb/transformed/jetified-camera-camera2-1.1.0/AndroidManifest.xml:34:17-86
+73        </service>
+74        <service
+74-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/d50b0317727f5e91e540c52c59fdc081/transformed/jetified-play-services-mlkit-barcode-scanning-18.0.0/AndroidManifest.xml:9:9-15:19
+75            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+75-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/d50b0317727f5e91e540c52c59fdc081/transformed/jetified-play-services-mlkit-barcode-scanning-18.0.0/AndroidManifest.xml:10:13-91
+76            android:directBootAware="true"
+76-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:17:13-43
+77            android:exported="false" >
+77-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/d50b0317727f5e91e540c52c59fdc081/transformed/jetified-play-services-mlkit-barcode-scanning-18.0.0/AndroidManifest.xml:11:13-37
+78            <meta-data
+78-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/d50b0317727f5e91e540c52c59fdc081/transformed/jetified-play-services-mlkit-barcode-scanning-18.0.0/AndroidManifest.xml:12:13-14:85
+79                android:name="com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar"
+79-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/d50b0317727f5e91e540c52c59fdc081/transformed/jetified-play-services-mlkit-barcode-scanning-18.0.0/AndroidManifest.xml:13:17-120
+80                android:value="com.google.firebase.components.ComponentRegistrar" />
+80-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/d50b0317727f5e91e540c52c59fdc081/transformed/jetified-play-services-mlkit-barcode-scanning-18.0.0/AndroidManifest.xml:14:17-82
+81            <meta-data
+81-->[com.google.mlkit:vision-common:17.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/526a0367810cd4124167543ac2a79f78/transformed/jetified-vision-common-17.0.0/AndroidManifest.xml:12:13-14:85
+82                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
+82-->[com.google.mlkit:vision-common:17.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/526a0367810cd4124167543ac2a79f78/transformed/jetified-vision-common-17.0.0/AndroidManifest.xml:13:17-124
+83                android:value="com.google.firebase.components.ComponentRegistrar" />
+83-->[com.google.mlkit:vision-common:17.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/526a0367810cd4124167543ac2a79f78/transformed/jetified-vision-common-17.0.0/AndroidManifest.xml:14:17-82
+84            <meta-data
+84-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:20:13-22:85
+85                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+85-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:21:17-120
+86                android:value="com.google.firebase.components.ComponentRegistrar" />
+86-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:22:17-82
+87        </service>
+88
+89        <provider
+89-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:9:9-13:38
+90            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+90-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:10:13-78
+91            android:authorities="com.example.admin_scanner_app.mlkitinitprovider"
+91-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:11:13-69
+92            android:exported="false"
+92-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:12:13-37
+93            android:initOrder="99" />
+93-->[com.google.mlkit:common:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/cddd6090c1baa6e232c2d4bbff647e41/transformed/jetified-common-18.0.0/AndroidManifest.xml:13:13-35
+94
+95        <activity
+95-->[com.google.android.gms:play-services-base:18.0.1] /Users/parthbatwara/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+96            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+96-->[com.google.android.gms:play-services-base:18.0.1] /Users/parthbatwara/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+97            android:exported="false"
+97-->[com.google.android.gms:play-services-base:18.0.1] /Users/parthbatwara/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+98            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+98-->[com.google.android.gms:play-services-base:18.0.1] /Users/parthbatwara/.gradle/caches/transforms-3/aba8f806953ea3dd8f794da3aeb78a12/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+99
+100        <meta-data
+100-->[com.google.android.gms:play-services-basement:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+101            android:name="com.google.android.gms.version"
+101-->[com.google.android.gms:play-services-basement:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+102            android:value="@integer/google_play_services_version" />
+102-->[com.google.android.gms:play-services-basement:18.0.0] /Users/parthbatwara/.gradle/caches/transforms-3/f64fba6e6efbe26a4b67f791bcfc957f/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+103
+104        <service
+104-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:29:9-35:19
+105            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+105-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:30:13-103
+106            android:exported="false" >
+106-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:31:13-37
+107            <meta-data
+107-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:32:13-34:39
+108                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+108-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:33:17-94
+109                android:value="cct" />
+109-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:34:17-36
+110        </service>
+111        <service
+111-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/parthbatwara/.gradle/caches/transforms-3/8a86750eba43ba46ae6e646b43a84835/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:26:9-30:19
+112            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+112-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/parthbatwara/.gradle/caches/transforms-3/8a86750eba43ba46ae6e646b43a84835/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:27:13-117
+113            android:exported="false"
+113-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/parthbatwara/.gradle/caches/transforms-3/8a86750eba43ba46ae6e646b43a84835/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:28:13-37
+114            android:permission="android.permission.BIND_JOB_SERVICE" >
+114-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/parthbatwara/.gradle/caches/transforms-3/8a86750eba43ba46ae6e646b43a84835/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:29:13-69
+115        </service>
+116
+117        <receiver
+117-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/parthbatwara/.gradle/caches/transforms-3/8a86750eba43ba46ae6e646b43a84835/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:32:9-34:40
+118            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+118-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/parthbatwara/.gradle/caches/transforms-3/8a86750eba43ba46ae6e646b43a84835/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:33:13-132
+119            android:exported="false" />
+119-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/parthbatwara/.gradle/caches/transforms-3/8a86750eba43ba46ae6e646b43a84835/transformed/jetified-transport-runtime-2.2.6/AndroidManifest.xml:34:13-37
+120    </application>
+121
+122</manifest>
