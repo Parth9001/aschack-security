@@ -1,8 +1,11 @@
 import 'package:frontend/login_page.dart';
 // import 'package:frontend/qr_scanner.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox('scannerData');
   runApp(const MyApp());
 }
 

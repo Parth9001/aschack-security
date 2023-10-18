@@ -59,7 +59,7 @@ class ResultScreen extends StatelessWidget {
               code,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 25,
                 color: Colors.black87,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1,

@@ -4,7 +4,7 @@
             "outputFile": "com.example.admin_scanner_app-mergeDebugResources-14:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/parthbatwara/Desktop/DevCom/aschack-security/Frontend/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

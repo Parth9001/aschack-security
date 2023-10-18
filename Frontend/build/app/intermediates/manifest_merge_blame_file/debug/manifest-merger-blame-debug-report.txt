@@ -13,11 +13,11 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/AndroidManifest.xml:4:1-63
-15-->/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/AndroidManifest.xml:4:18-60
+15-->/Users/parthbatwara/Desktop/DevCom/aschack-security/Frontend/android/app/src/main/AndroidManifest.xml:4:1-63
+15-->/Users/parthbatwara/Desktop/DevCom/aschack-security/Frontend/android/app/src/main/AndroidManifest.xml:4:18-60
 16    <uses-permission android:name="android.permission.CAMERA" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
-16-->/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/AndroidManifest.xml:2:1-60
-16-->/Users/parthbatwara/Desktop/DevCom/entryexitsystem/admin_scanner_app/Frontend/android/app/src/main/AndroidManifest.xml:2:18-58
+16-->/Users/parthbatwara/Desktop/DevCom/aschack-security/Frontend/android/app/src/main/AndroidManifest.xml:2:1-60
+16-->/Users/parthbatwara/Desktop/DevCom/aschack-security/Frontend/android/app/src/main/AndroidManifest.xml:2:18-58
 17    <!-- <uses-sdk android:minSdkVersion="14"/> -->
 18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 18-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/parthbatwara/.gradle/caches/transforms-3/865800f069935b874f356d17af4d45b6/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:25:5-79

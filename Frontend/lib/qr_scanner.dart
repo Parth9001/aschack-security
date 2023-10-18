@@ -1,58 +1,191 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/result_screen.dart';
+
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:intl/intl.dart';
+
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'qr_scanner.dart';
-part 'qr_scanner.g.dart';
+
 
 const bgcolor = Color(0xfffafafa);
 
-@HiveType(typeId: 0)
-class UserModel extends HiveObject {
-  @HiveField(0)
-  final List<String> userIds;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('userData');
 
-  UserModel({required this.userIds});
+  void dataEntry(Map<String, dynamic> data,List<String> uID) async {
+  final userData = Hive.box('userData');
+  data.forEach((key, value) async {
+    var qq = {"eventName": value[1], "eventID": value[0], "uID": uID};
+    await userData.add(qq);
+    print(value[0]);
+  });}
 }
 
-Future<List<int>> fetchDataFromAPI() async {
-  String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
-  final response = await http.get(Uri.parse(
-      'https://7dfc-103-21-126-76.ngrok-free.app/scanner_app/fetch_data/$formattedDate/'));
+Future<void> getData(String eventToken, DateTime date) async{
+  final response = await http.get(Uri.parse('https://7dfc-103-21-126-76.ngrok-free.app/scanner_app/get_qr)'), body: {
+    'token' = eventToken,
+    'date' = date,
+  });
+  
+  final jsonData = json.decode(response.body);
+    dataEntry(jsonData['events'], jsonData['users']);
+}
 
-  if (response.statusCode == 200) {
-    final List<dynamic> data = jsonDecode(response.body);
-    return data.cast<int>();
-  } else {
-    throw Exception('Failed to load data from API');
+
+
+// Future<bool> isArgumentInDatabase(String argument) async {}
+
+class QRScanner extends StatefulWidget {
+  const QRScanner({super.key});
+
+  @override
+  State<QRScanner> createState() => _QRScannerState();
+}
+
+class _QRScannerState extends State<QRScanner> {
+  bool isScanCompleted = false;
+  bool isFlashON = false;
+  bool isFrontCamera = false;
+  MobileScannerController controller = MobileScannerController();
+  void closeScreen() {
+    isScanCompleted = false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: bgcolor,
+      drawer: const Drawer(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isFlashON = !isFlashON;
+              });
+              controller.toggleTorch();
+            },
+            icon: Icon(Icons.flash_on,
+                color: isFlashON ? Colors.blue : Colors.grey),
+          ),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isFrontCamera = !isFrontCamera;
+              });
+              controller.switchCamera();
+            },
+            icon: Icon(Icons.camera_front,
+                color: isFrontCamera ? Colors.blue : Colors.grey),
+          ),
+        ],
+        iconTheme: IconThemeData(color: Colors.black87),
+        centerTitle: true,
+        title: const Text(
+          'QR Scanner',
+          style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1,
+          ),
+        ),
+      ),
+      body: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Expanded(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Place the QR code in the area',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                  ),
+                ),
+                Text(
+                  'Scanning will be started automatically',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                )
+              ],
+            )),
+            Expanded(
+                flex: 4,
+                child: Stack(
+                  children: [
+                    MobileScanner(
+                      controller: controller,
+                      allowDuplicates: true,
+                      onDetect: (barcode, args) async {
+                        if (!isScanCompleted) {
+                          String code = barcode.rawValue ?? '---';
+                          isScanCompleted = true;
+                          print(code);
+                          //   if (await isArgumentInDatabase(code)) {
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => ResultScreen(
+                          //                   closeScreen: closeScreen,
+                          //                   code: 'Verfied',
+                          //                 )));
+                          //   } else {
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: ((context) => ResultScreen(
+                          //                 closeScreen: closeScreen,
+                          //                 code: 'Not Verified'))));
+                          //   }
+                        }
+                      },
+                    ),
+                    // const QRScannerOverlay(overlayColour: bgcolor),
+                  ],
+                )),
+            Expanded(
+                child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                'Developed by DevCom',
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 14,
+                  letterSpacing: 1,
+                ),
+              ),
+            )),
+          ],
+        ),
+      ),
+    );
   }
 }
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Initialize Hive
-  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
-  Hive.init(appDocumentDir.path);
-  Hive.registerAdapter(UserModelAdapter());
+void dataEntry(Map<String, dynamic> data, String uID) async {
+  final _qrList = Hive.box('qrList');
+  data.forEach((key, value) async {
+    var qq = {"eventName": value[1], "eventID": value[0], "uID": uID};
+    await _qrList.add(qq);
+    print(value[0]);
+  });
 }
-
-Future<void> storeDataInHive(List<String> data) async {
-  final box = await Hive.openBox<UserModel>('user_model');
-  await box.put('data', UserModel(userIds: data));
-}
-
-Future<bool> isArgumentInDatabase(String argument) async {
-  final box = await Hive.openBox<UserModel>('user_model');
-  final data = box.get('data', defaultValue: UserModel(userIds: []));
-  return data!.userIds.contains(argument);
-}
-
 // class Event {
 //   final int token;
 //   final String name;
@@ -236,144 +369,4 @@ Future<bool> isArgumentInDatabase(String argument) async {
 //   );
 
 //   return result.isNotEmpty;
-// }
 
-class QRScanner extends StatefulWidget {
-  const QRScanner({super.key});
-
-  @override
-  State<QRScanner> createState() => _QRScannerState();
-}
-
-class _QRScannerState extends State<QRScanner> {
-  bool isScanCompleted = false;
-  bool isFlashON = false;
-  bool isFrontCamera = false;
-  MobileScannerController controller = MobileScannerController();
-
-  void closeScreen() {
-    isScanCompleted = false;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgcolor,
-      drawer: const Drawer(),
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              setState(() {
-                isFlashON = !isFlashON;
-              });
-              controller.toggleTorch();
-            },
-            icon: Icon(Icons.flash_on,
-                color: isFlashON ? Colors.blue : Colors.grey),
-          ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                isFrontCamera = !isFrontCamera;
-              });
-              controller.switchCamera();
-            },
-            icon: Icon(Icons.camera_front,
-                color: isFrontCamera ? Colors.blue : Colors.grey),
-          ),
-        ],
-        iconTheme: IconThemeData(color: Colors.black87),
-        centerTitle: true,
-        title: const Text(
-          'QR Scanner',
-          style: TextStyle(
-            color: Colors.black87,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1,
-          ),
-        ),
-      ),
-      body: Container(
-        width: double.infinity,
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Expanded(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Place the QR code in the area',
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
-                  ),
-                ),
-                Text(
-                  'Scanning will be started automatically',
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                )
-              ],
-            )),
-            Expanded(
-                flex: 4,
-                child: Stack(
-                  children: [
-                    MobileScanner(
-                      controller: controller,
-                      allowDuplicates: true,
-                      onDetect: (barcode, args) async {
-                        if (!isScanCompleted) {
-                          String code = barcode.rawValue ?? '---';
-                          isScanCompleted = true;
-                          if (await isArgumentInDatabase(code)) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ResultScreen(
-                                          closeScreen: closeScreen,
-                                          code: 'Verfied',
-                                        )));
-                          } else {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) => ResultScreen(
-                                        closeScreen: closeScreen,
-                                        code: 'Not Verified'))));
-                          }
-                        }
-                      },
-                    ),
-                    // const QRScannerOverlay(overlayColour: bgcolor),
-                  ],
-                )),
-            Expanded(
-                child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                'Developed by DevCom',
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 14,
-                  letterSpacing: 1,
-                ),
-              ),
-            )),
-          ],
-        ),
-      ),
-    );
-  }
-}
