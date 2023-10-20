@@ -1,48 +1,29 @@
 import 'package:flutter/material.dart';
-
+// import 'package:frontend/login_page.dart';
+import 'package:frontend/result_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-
-
 const bgcolor = Color(0xfffafafa);
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  await Hive.openBox('userData');
-
-  void dataEntry(Map<String, dynamic> data,List<String> uID) async {
-  final userData = Hive.box('userData');
-  data.forEach((key, value) async {
-    var qq = {"eventName": value[1], "eventID": value[0], "uID": uID};
-    await userData.add(qq);
-    print(value[0]);
-  });}
-}
-
-Future<void> getData(String eventToken, DateTime date) async{
-  final response = await http.get(Uri.parse('https://7dfc-103-21-126-76.ngrok-free.app/scanner_app/get_qr)'), body: {
-    'token' = eventToken,
-    'date' = date,
-  });
-  
-  final jsonData = json.decode(response.body);
-    dataEntry(jsonData['events'], jsonData['users']);
-}
-
-
-
-// Future<bool> isArgumentInDatabase(String argument) async {}
 
 class QRScanner extends StatefulWidget {
   const QRScanner({super.key});
 
   @override
   State<QRScanner> createState() => _QRScannerState();
+}
+
+Future<bool> verifyUser(String userID) async {
+  final userData = await Hive.openBox('userData');
+
+  for (var i = 0; i < userData.length; i++) {
+    final entry = userData.getAt(i);
+    if (entry != null && entry['name'] == userID) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 class _QRScannerState extends State<QRScanner> {
@@ -137,22 +118,22 @@ class _QRScannerState extends State<QRScanner> {
                           String code = barcode.rawValue ?? '---';
                           isScanCompleted = true;
                           print(code);
-                          //   if (await isArgumentInDatabase(code)) {
-                          //     Navigator.push(
-                          //         context,
-                          //         MaterialPageRoute(
-                          //             builder: (context) => ResultScreen(
-                          //                   closeScreen: closeScreen,
-                          //                   code: 'Verfied',
-                          //                 )));
-                          //   } else {
-                          //     Navigator.push(
-                          //         context,
-                          //         MaterialPageRoute(
-                          //             builder: ((context) => ResultScreen(
-                          //                 closeScreen: closeScreen,
-                          //                 code: 'Not Verified'))));
-                          //   }
+                          if (await verifyUser(code)) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ResultScreen(
+                                          closeScreen: closeScreen,
+                                          code: 'Verfied',
+                                        )));
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => ResultScreen(
+                                        closeScreen: closeScreen,
+                                        code: 'Not Verified'))));
+                          }
                         }
                       },
                     ),
